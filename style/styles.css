@@ -1,0 +1,93 @@
+body {
+  background-color: #f0f0f2;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h5{
+  text-align: center;
+}
+
+.big {
+  width: auto;
+  margin: 10px; /* changed */
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 1em;
+  border: 2px solid;
+}
+
+.btn{
+  display: inline-block;
+  border: 2px solid;
+  font-size: 16px;
+  background-color: #f0f0f2;
+  border-radius: 1em;
+  padding: 10px;
+}
+
+.btn:hover{
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.btn:active{
+  background-color: #99b433;
+}
+
+.controls{
+  float: left;
+}
+
+.buttonRow{
+  width: 40%;
+  margin: 0 auto;
+  /*justify-content:space-between; */
+}
+
+#playerControls, #gameControls{
+  width: 100%;
+}
+
+#leftButtons{
+  float: left;
+  margin-right: 20px;
+}
+
+#rightButtons{
+  float: right;
+  margin-left: 20px;
+}
+
+#map{
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  line-height: 12px;
+  float: left;
+  white-space: pre;
+}
+
+#updates{
+  clear: both; /* students will strugle with this addition */
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+#gameState{
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  border: 2px solid;
+  font-size: 16px;
+  background-color: #f0f0f2;
+  border-radius: 1em;
+  padding: 10px;
+}
+
+ #inventory{
+   clear: both; /* students will strugle with this addition */
+   font-family: 'Press Start 2P', cursive;
+   font-size: 12px;
+   line-height: 12px;
+ }
