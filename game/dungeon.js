@@ -141,13 +141,10 @@ catch(e){var heroloc = {x:null,y:null}}
 
   interactStarter(coordinates){
         coordinates = Utils.typeCheck(coordinates, "obj","dungeon.interactStarter")
-      var item = this.map.cell[coordinates.y][coordinates.x].remove("test");
-      if(item !== undefined){
-        this.hero.take(item);
-        updates.innerHTML = this.hero.name + " picked up" + item.name;
-      }else{
-        updates.innerHTML = "there is nothing there"
-    }
+      var list = this.map.cell[coordinates.y][coordinates.x].list;
+      if () {
+
+      }
   }
 
 
