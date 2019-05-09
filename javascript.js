@@ -145,7 +145,6 @@ function interactKey(e){
                     drawMap();
                   }
                 }
-
   function list(inventory){
   var num = 9;
   var inv = "The Merch <BR><BR>";
@@ -156,7 +155,7 @@ function interactKey(e){
     inv += "<BR>"
    }
    return inv += "0. cancel"
-  }
+}
 
 var dungeon = new Dungeon;
 dungeon.initalizeDungeon(mapPackage);
