@@ -147,7 +147,7 @@ document.addEventListener("keyup", actkey);
   //list format 1-9 + 0 being cancel
   function list(inventory){
     var num = 9;
-    var inv = "The Merch <BR><BR>";
+    var inv = "Inventory <BR><BR>";
    for (var i = 1; i <= num; i++) {
      if(inventory[i] !== undefined){
         inv += i + ". " + inventory[i];
