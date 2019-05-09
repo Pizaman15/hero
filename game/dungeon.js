@@ -139,15 +139,6 @@ catch(e){var heroloc = {x:null,y:null}}
     this.map.makeMap(mapPackage.room, mapPackage.roomDensity, mapPackage.hallDensity);
   }
 
-  interactStarter(coordinates){
-        coordinates = Utils.typeCheck(coordinates, "obj","dungeon.interactStarter")
-      var list = this.map.cell[coordinates.y][coordinates.x].list;
-      if () {
-
-      }
-  }
-
-
   get name(){ return Utils.undefinedCheck(this._name, "Dungeon.name"); }
   set name(name){ this._name = Utils.typeCheck(name, "str", "Dungeon.name"); }
 
