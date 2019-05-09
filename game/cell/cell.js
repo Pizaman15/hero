@@ -58,7 +58,7 @@ class Cell{
 get list(){
   var list = {length: this.inventory.length};
     for (var i = 0; i < this.inventory.length; i++) {
-      return list[i + 1];
+      list[i + 1] = this.inventory[i].name;
       }
       return list;
     }

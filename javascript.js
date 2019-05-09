@@ -144,9 +144,17 @@ function interactKey(e){
                     drawMap();
                   }
                 }
-
+console.log()
   function list(){
-    
+    var num = 9;
+    for (var i = 0; i < dungeon.cell.inventory.length; i++) {
+        num - 1;
+        "<br>"
+      }
+      for (var i = 0; i < num; i++) {
+         dungeon.cell.iventory[i] = dungeon.cell.inventory.index;
+         "<br>"
+      }
   }
 
 var dungeon = new Dungeon;
