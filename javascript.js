@@ -33,6 +33,7 @@ function actkey(e){
   if(heroState > 3){heroState = 1;}
   if (heroState == 2){
     interactKey(e);
+    list();
   }
   if(heroState == 1){logkey(e);}
   if(heroState == 3){
@@ -145,8 +146,16 @@ function interactKey(e){
                   }
                 }
 
-  function list(){
-    
+  function list(inventory){
+  var num = 9;
+  var inv = "The Merch <BR><BR>";
+   for (var i = 1; i <= num; i++) {
+     if(inventory[i] !== undefined){
+        inv += i + ". " + inventory[i];
+    }
+    inv += "<BR>"
+   }
+   return inv += "0. cancel"
   }
 
 var dungeon = new Dungeon;
