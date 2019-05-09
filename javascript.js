@@ -33,7 +33,6 @@ function actkey(e){
   if(heroState > 3){heroState = 1;}
   if (heroState == 2){
     interactKey(e);
-    list();
   }
   if(heroState == 1){logkey(e);}
   if(heroState == 3){
@@ -58,35 +57,35 @@ function interact(key){
 document.addEventListener("keyup", actkey);
 function interactKey(e){
   if(e.key == "End" || e.key == "1"){
-  dungeon.interactStarter(interact("1"));
+  interactStarter(interact("1"));
   drawMap();
 }
   if(e.key == "ArrowDown" || e.key == "2"){
-      dungeon.interactStarter(interact("2"));
+      interactStarter(interact("2"));
     drawMap();
   }
   if(e.key == "PageDown" || e.key == "3"){
-      dungeon.interactStarter(interact("3"));
+      interactStarter(interact("3"));
       drawMap();
   }
     if(e.key == "ArrowLeft" || e.key == "4"){
-        dungeon.interactStarter(interact("4"));
+        interactStarter(interact("4"));
     drawMap();
   }
   if(e.key == "ArrowRight" || e.key == "6"){
-      dungeon.interactStarter(interact("6"));
+      interactStarter(interact("6"));
     drawMap();
   }
   if(e.key == "Home" || e.key == "7"){
-      dungeon.interactStarter(interact("7"));
+      interactStarter(interact("7"));
     drawMap();
   }
   if(e.key == "ArrowUp" || e.key == "8"){
-      dungeon.interactStarter(interact("8"));
+      interactStarter(interact("8"));
     drawMap();
   }
   if(e.key == "PageUp" || e.key == "9"){
-      dungeon.interactStarter(interact("9"));
+      interactStarter(interact("9"));
     }
     drawMap();
     }
@@ -155,6 +154,17 @@ function interactKey(e){
     inv += "<BR>"
    }
    return inv += "0. cancel"
+}
+
+  function interactStarter(coordinates){
+      coordinates = Utils.typeCheck(coordinates, "obj","interactStarter")
+    var stuff = dungeon.map.cell[coordinates.y][coordinates.x].list;
+    var text = list(stuff);
+    if(stuff !== undefined){
+      document.getElementById("inventory").innerHTML = "loot bag <br>" + text;
+    }else{
+      document.getElementById("inventory").innerHTML = "inventory is empty"
+  }
 }
 
 var dungeon = new Dungeon;
