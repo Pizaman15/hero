@@ -25,20 +25,19 @@ var heroPackage = {image: "@",
 
 var heroState = 1;
 var interact = false;
+var invCords = undefined;
 
   // 1 is to move
   // 2 is to interact
   // 3 is to attack
   function actkey(e){
     if(!interact){
-    if (interact){
+    if(interact){
     if(e.key == 5){heroState ++;}
     if(heroState > 3){heroState = 1;}
-    if (heroState == 2){
-      interactKey(e);
-    }
-   if(heroState == 1){logkey(e);}
-   if(heroState == 3){
+    if(heroState == 2){interactKey(e);}
+    if(heroState == 1){logkey(e);}
+    if(heroState == 3){
   console.log(heroState);
         }
       }
@@ -183,6 +182,19 @@ document.addEventListener("keyup", actkey);
     return cell.remove(replace);
   }
 
+
+function inventoryControl(key){
+  var whitelist = [];
+  var cell = dungeon.map.cell[invCords.y][invCords.x];
+  var list = cell.list;
+    for (var i = 1; i <= list.length ; i++) {whitelist.push([i]);}
+      if(key.key == 0){
+        interact = false;
+      }
+      if(whitelist.includes(key.key)){
+        return interactend(cell, key.key);
+  }
+}
   var dungeon = new Dungeon;
   dungeon.initalizeDungeon(mapPackage);
   ctx.innerHTML = dungeon.displayDungeon();
