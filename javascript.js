@@ -29,6 +29,7 @@ var heroState = 1;
   // 2 is to interact
   // 3 is to attack
   function actkey(e){
+    if (!interact) {
     if(e.key == 5){heroState ++;}
     if(heroState > 3){heroState = 1;}
     if (heroState == 2){
@@ -38,6 +39,10 @@ var heroState = 1;
    if(heroState == 3){
   console.log(heroState);
     }
+   }
+   if (interact) {
+
+   }
   }
 
   function keys(key){
@@ -154,7 +159,7 @@ document.addEventListener("keyup", actkey);
      }
     inv += "<BR>";
    }
-   return inv += "0. cancel";
+   return inv += "0. Cancel";
   }
 
   //Makes the inventory when collecting things
@@ -164,19 +169,18 @@ document.addEventListener("keyup", actkey);
    var stuff = dungeon.map.cell[coordinates.y][coordinates.x].list;
    var text = list(stuff);
      if(stuff !== undefined){
-      document.getElementById("inventory").innerHTML = "loot bag <br>" + text;
+      document.getElementById("inventory").innerHTML = "Loot Bag <br>" + text;
     }else{
-      document.getElementById("inventory").innerHTML = "inventory is empty";
+      document.getElementById("inventory").innerHTML = "Inventory is empty";
     }
   }
 
-
-  function interactend(coordinates, number){
-    var coordinates = dungoen.map.cell[coordinates.y][coordinates.x];
-    for (var i = 0; i < dungen.cell.length ; i++) {
-
-    }
+   function interactEnd(coordinates, number){
+    var cell = dungeon.map.cell[coordinates.y][coordinates.x];
+  var replace = cell.list[number];
+  return cell.remove(replace);
   }
+
   var dungeon = new Dungeon;
   dungeon.initalizeDungeon(mapPackage);
   ctx.innerHTML = dungeon.displayDungeon();
