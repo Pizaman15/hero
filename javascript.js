@@ -180,7 +180,24 @@ document.addEventListener("keyup", actkey);
   var replace = cell.list[number];
   return cell.remove(replace);
   }
-
+/*J. make a new function called inventoryControl(key) that does the following:
+uses a list from list() to find out what numbers there are in a cell (like 1:
+'sword' 2: 'axe' 3: 'Aidan's lack of self respect' means keys 1-3 would do their
+ thing) and makes the corresponding keys call interactEnd() for that itemthis
+ function should also make 0 a functional key as well. All successful keypresses
+  should return false for 0 or the item from interactEnd().*/
+  function inventoryControl(key){
+    var whitelist = [];
+    var cell = dungeon.map.cell[invCords.y][invCords.x].list;
+    var list = cell.list;
+      for (var i = 1; i <= list; i++) {whitelist.push([i]);}
+      if (key.key == 0) {
+        interact = false;
+      }
+      if (whitelist.includes(key.key)) {
+        return interactEnd(cell, key.key);
+      }
+      }
   var dungeon = new Dungeon;
   dungeon.initalizeDungeon(mapPackage);
   ctx.innerHTML = dungeon.displayDungeon();
