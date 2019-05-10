@@ -170,6 +170,13 @@ document.addEventListener("keyup", actkey);
     }
   }
 
+
+  function interactend(coordinates, number){
+    var coordinates = dungoen.map.cell[coordinates.y][coordinates.x];
+    for (var i = 0; i < dungen.cell.length ; i++) {
+
+    }
+  }
   var dungeon = new Dungeon;
   dungeon.initalizeDungeon(mapPackage);
   ctx.innerHTML = dungeon.displayDungeon();
