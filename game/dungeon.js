@@ -145,9 +145,6 @@ catch(e){var heroloc = {x:null,y:null}}
   //cells buy name and returns it so we will most likely need for statements
   //and if statements to check the inventory if it is empty dont check if it
   //isnt then check the items and there order and names...?
-   interactEnd(coordinates, number){
-
-   }
 
   get name(){ return Utils.undefinedCheck(this._name, "Dungeon.name"); }
   set name(name){ this._name = Utils.typeCheck(name, "str", "Dungeon.name"); }

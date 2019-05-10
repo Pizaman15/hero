@@ -24,11 +24,14 @@ var heroPackage = {image: "@",
                    damage: {min:2, max:5}}
 
 var heroState = 1;
+var interact = false;
 
   // 1 is to move
   // 2 is to interact
   // 3 is to attack
   function actkey(e){
+    if(!interact){
+    if (interact){
     if(e.key == 5){heroState ++;}
     if(heroState > 3){heroState = 1;}
     if (heroState == 2){
@@ -37,6 +40,8 @@ var heroState = 1;
    if(heroState == 1){logkey(e);}
    if(heroState == 3){
   console.log(heroState);
+        }
+      }
     }
   }
 
@@ -87,7 +92,7 @@ var heroState = 1;
     if(e.key == "PageUp" || e.key == "9"){
       interactStarter(interact("9"));
      drawMap();
-    }
+      }
   }
 
 document.addEventListener("keyup", actkey);
@@ -139,7 +144,7 @@ document.addEventListener("keyup", actkey);
         updates.innerHTML = dungeon.hero.name + " moved north east";
       }else{updates.innerHTML = dungeon.hero.name + " hit a wall";}
         drawMap();
-    }
+      }
   }
 
   //List creates a list 1-9 for inventory
@@ -172,11 +177,12 @@ document.addEventListener("keyup", actkey);
 
 
   function interactend(coordinates, number){
-    var coordinates = dungoen.map.cell[coordinates.y][coordinates.x];
-    for (var i = 0; i < dungen.cell.length ; i++) {
+    var cell = dungeon.map.cell[coordinates.y][coordinates.x];
+    var replace = cell.list[number];
 
-    }
+    return cell.remove(replace);
   }
+
   var dungeon = new Dungeon;
   dungeon.initalizeDungeon(mapPackage);
   ctx.innerHTML = dungeon.displayDungeon();
