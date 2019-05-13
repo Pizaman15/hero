@@ -29,21 +29,13 @@ var heroState = 1;
   // 2 is to interact
   // 3 is to attack
   function actkey(e){
-    if (!interact) {
     if(e.key == 5){heroState ++;}
     if(heroState > 3){heroState = 1;}
-    if (heroState == 2){
-      interactKey(e);
-    }
-   if(heroState == 1){logkey(e);}
-   if(heroState == 3){
-  console.log(heroState);
-    }
+    if(heroState == 2){interactKey(e);}
+    if(heroState == 1){logkey(e);}
+    if(heroState == 3){          }
+    if (interact){}
    }
-   if (interact) {
-
-   }
-  }
 
   function keys(key){
    var cord = dungeon._keyToMove(key);
