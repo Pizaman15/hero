@@ -123,31 +123,6 @@ catch(e){var heroloc = {x:null,y:null}}
     return output;
   }
 
-  weapon(valueInt, defIndex = 30, least, most){
-    defIndex = 30;
-    var damage = {min: least, max: most};
-    var attack = Utils.randomNumber(damage.min, damage.max);
-    var weaponObj = {
-      defaultIndex: defIndex,
-      damageMin: damage.min,
-      damageMax: damage.max,
-      attack: attack
-    };
-    return weaponObj;
-  }
-
-  coin(coinValue, name = "Coin", index = 1){
-    index = 1;
-  if(coinValue > 1){
-    name = "Coins";
-  }
-  var coinObj = {
-    name: name,
-    index: index,
-    coinValue: coinValue
-  }
-  return coinObj;
-  }
   /* initalizeDungeon(mapPackage)
   A function to initalize the dungeon with a map. The format of the object to be
   Passed to it is as follows {name:str, size:{width:int, height:int}, tile:class
