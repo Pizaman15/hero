@@ -31,8 +31,12 @@ var invCords = undefined;
   // 2 is to interact
   // 3 is to attack
   function actkey(e){
+<<<<<<< HEAD
     if(!interact){
     if(interact){
+=======
+    if (!interact) {
+>>>>>>> 215e3f5ee2b0976809ba7268e1d4f624f28051f9
     if(e.key == 5){heroState ++;}
     if(heroState > 3){heroState = 1;}
     if(heroState == 2){interactKey(e);}
@@ -42,6 +46,10 @@ var invCords = undefined;
         }
       }
     }
+   }
+   if (interact) {
+
+   }
   }
 
   function keys(key){
@@ -158,7 +166,7 @@ document.addEventListener("keyup", actkey);
      }
     inv += "<BR>";
    }
-   return inv += "0. cancel";
+   return inv += "0. Cancel";
   }
 
   //Makes the inventory when collecting things
@@ -168,12 +176,13 @@ document.addEventListener("keyup", actkey);
    var stuff = dungeon.map.cell[coordinates.y][coordinates.x].list;
    var text = list(stuff);
      if(stuff !== undefined){
-      document.getElementById("inventory").innerHTML = "loot bag <br>" + text;
+      document.getElementById("inventory").innerHTML = "Loot Bag <br>" + text;
     }else{
-      document.getElementById("inventory").innerHTML = "inventory is empty";
+      document.getElementById("inventory").innerHTML = "Inventory is empty";
     }
   }
 
+<<<<<<< HEAD
 
   function interactend(coordinates, number){
     var cell = dungeon.map.cell[coordinates.y][coordinates.x];
@@ -195,6 +204,31 @@ function inventoryControl(key){
         return interactend(cell, key.key);
   }
 }
+=======
+   function interactEnd(coordinates, number){
+    var cell = dungeon.map.cell[coordinates.y][coordinates.x];
+  var replace = cell.list[number];
+  return cell.remove(replace);
+  }
+/*J. make a new function called inventoryControl(key) that does the following:
+uses a list from list() to find out what numbers there are in a cell (like 1:
+'sword' 2: 'axe' 3: 'Aidan's lack of self respect' means keys 1-3 would do their
+ thing) and makes the corresponding keys call interactEnd() for that itemthis
+ function should also make 0 a functional key as well. All successful keypresses
+  should return false for 0 or the item from interactEnd().*/
+  function inventoryControl(key){
+    var whitelist = [];
+    var cell = dungeon.map.cell[invCords.y][invCords.x].list;
+    var list = cell.list;
+      for (var i = 1; i <= list; i++) {whitelist.push([i]);}
+      if (key.key == 0) {
+        interact = false;
+      }
+      if (whitelist.includes(key.key)) {
+        return interactEnd(cell, key.key);
+      }
+      }
+>>>>>>> 215e3f5ee2b0976809ba7268e1d4f624f28051f9
   var dungeon = new Dungeon;
   dungeon.initalizeDungeon(mapPackage);
   ctx.innerHTML = dungeon.displayDungeon();
