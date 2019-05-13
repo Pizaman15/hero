@@ -24,17 +24,36 @@ var heroPackage = {image: "@",
                    damage: {min:2, max:5}}
 
 var heroState = 1;
+var interact = false;
+var invCords = undefined;
 
   // 1 is to move
   // 2 is to interact
   // 3 is to attack
   function actkey(e){
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    if(!interact){
+    if(interact){
+=======
+    if (!interact) {
+>>>>>>> 215e3f5ee2b0976809ba7268e1d4f624f28051f9
+>>>>>>> 8ed8332f5a85a04505a708ed1d042c218d9efc05
     if(e.key == 5){heroState ++;}
     if(heroState > 3){heroState = 1;}
     if(heroState == 2){interactKey(e);}
     if(heroState == 1){logkey(e);}
+<<<<<<< HEAD
     if(heroState == 3){          }
     if (interact){}
+=======
+    if(heroState == 3){
+  console.log(heroState);
+        }
+      }
+    }
+>>>>>>> 8ed8332f5a85a04505a708ed1d042c218d9efc05
    }
 
   function keys(key){
@@ -84,7 +103,7 @@ var heroState = 1;
     if(e.key == "PageUp" || e.key == "9"){
       interactStarter(interact("9"));
      drawMap();
-    }
+      }
   }
 
 document.addEventListener("keyup", actkey);
@@ -136,7 +155,7 @@ document.addEventListener("keyup", actkey);
         updates.innerHTML = dungeon.hero.name + " moved north east";
       }else{updates.innerHTML = dungeon.hero.name + " hit a wall";}
         drawMap();
-    }
+      }
   }
 
   //List creates a list 1-9 for inventory
@@ -167,6 +186,29 @@ document.addEventListener("keyup", actkey);
     }
   }
 
+<<<<<<< HEAD
+
+  function interactend(coordinates, number){
+    var cell = dungeon.map.cell[coordinates.y][coordinates.x];
+    var replace = cell.list[number];
+
+    return cell.remove(replace);
+  }
+
+
+function inventoryControl(key){
+  var whitelist = [];
+  var cell = dungeon.map.cell[invCords.y][invCords.x];
+  var list = cell.list;
+    for (var i = 1; i <= list.length ; i++) {whitelist.push([i]);}
+      if(key.key == 0){
+        interact = false;
+      }
+      if(whitelist.includes(key.key)){
+        return interactend(cell, key.key);
+  }
+}
+=======
    function interactEnd(coordinates, number){
     var cell = dungeon.map.cell[coordinates.y][coordinates.x];
   var replace = cell.list[number];
@@ -190,6 +232,7 @@ uses a list from list() to find out what numbers there are in a cell (like 1:
         return interactEnd(cell, key.key);
       }
       }
+>>>>>>> 215e3f5ee2b0976809ba7268e1d4f624f28051f9
   var dungeon = new Dungeon;
   dungeon.initalizeDungeon(mapPackage);
   ctx.innerHTML = dungeon.displayDungeon();
