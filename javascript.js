@@ -24,19 +24,25 @@ var heroPackage = {image: "@",
                    damage: {min:2, max:5}}
 
 var heroState = 1;
-var invbool = false;
-var invcell = null;
+var interact = false;
+var invCords = undefined;
+
   // 1 is to move
   // 2 is to interact
   // 3 is to attack
   function actkey(e){
+    if(interact){
+    if (!interact) {
     if(e.key == 5){heroState ++;}
     if(heroState > 3){heroState = 1;}
-    if (heroState == 2){
-      interactKey(e);
-    }
+    if(heroState == 2){interactKey(e);}
     if(heroState == 1){logkey(e);}
+    if(heroState == 3){          }
+    if (interact){}
     if(heroState == 3){
+  console.log(heroState);
+        }
+      }
     }
   }
 
@@ -88,7 +94,7 @@ var invcell = null;
     if(e.key == "PageUp" || e.key == "9"){
       interactStarter(interact("9"));
      drawMap();
-    }
+      }
   }
 }
 
@@ -141,7 +147,7 @@ document.addEventListener("keyup", actkey);
         updates.innerHTML = dungeon.hero.name + " moved north east";
       }else{updates.innerHTML = dungeon.hero.name + " hit a wall";}
         drawMap();
-    }
+      }
   }
 
   //List creates a list 1-9 for inventory
@@ -149,14 +155,14 @@ document.addEventListener("keyup", actkey);
   //list format 1-9 + 0 being cancel
   function list(inventory){
     var num = 9;
-    var inv = "The Merch <BR><BR>";
+    var inv = "Inventory <BR><BR>";
    for (var i = 1; i <= num; i++) {
      if(inventory[i] !== undefined){
         inv += i + ". " + inventory[i];
      }
     inv += "<BR>";
    }
-   return inv += "0. cancel";
+   return inv += "0. Cancel";
   }
 
   //Makes the inventory when collecting things
@@ -169,17 +175,54 @@ document.addEventListener("keyup", actkey);
       document.getElementById("inventory").innerHTML = "loot bag <br>" + text;
       invbool = true;
     }else{
-      document.getElementById("inventory").innerHTML = "inventory is empty";
+      document.getElementById("inventory").innerHTML = "Inventory is empty";
     }
   }
 
-function interactend(coordinates, number){
-  var num = 0;
-  for (var i = 0; i < dungeon.map.cell[coordinates.y][coordinates.x].list.length; i++) {
-  num = i;
+
+  function interactend(coordinates, number){
+    var cell = dungeon.map.cell[coordinates.y][coordinates.x];
+    var replace = cell.list[number];
+
+    return cell.remove(replace);
   }
-  return dungeon.map.cell.name;
+
+
+function inventoryControl(key){
+  var whitelist = [];
+  var cell = dungeon.map.cell[invCords.y][invCords.x];
+  var list = cell.list;
+    for (var i = 1; i <= list.length ; i++) {whitelist.push([i]);}
+      if(key.key == 0){
+        interact = false;
+      }
+      if(whitelist.includes(key.key)){
+        return interactend(cell, key.key);
+  }
 }
+   function interactEnd(coordinates, number){
+    var cell = dungeon.map.cell[coordinates.y][coordinates.x];
+  var replace = cell.list[number];
+  return cell.remove(replace);
+  }
+/*J. make a new function called inventoryControl(key) that does the following:
+uses a list from list() to find out what numbers there are in a cell (like 1:
+'sword' 2: 'axe' 3: 'Aidan's lack of self respect' means keys 1-3 would do their
+ thing) and makes the corresponding keys call interactEnd() for that itemthis
+ function should also make 0 a functional key as well. All successful keypresses
+  should return false for 0 or the item from interactEnd().*/
+  function inventoryControl(key){
+    var whitelist = [];
+    var cell = dungeon.map.cell[invCords.y][invCords.x].list;
+    var list = cell.list;
+      for (var i = 1; i <= list; i++) {whitelist.push([i]);}
+      if (key.key == 0) {
+        interact = false;
+      }
+      if (whitelist.includes(key.key)) {
+        return interactEnd(cell, key.key);
+      }
+      }
   var dungeon = new Dungeon;
   dungeon.initalizeDungeon(mapPackage);
   ctx.innerHTML = dungeon.displayDungeon();
