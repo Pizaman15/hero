@@ -24,7 +24,8 @@ var heroPackage = {image: "@",
                    damage: {min:2, max:5}}
 
 var heroState = 1;
-
+var invbool = false;
+var invcell = null;
   // 1 is to move
   // 2 is to interact
   // 3 is to attack
@@ -34,9 +35,8 @@ var heroState = 1;
     if (heroState == 2){
       interactKey(e);
     }
-   if(heroState == 1){logkey(e);}
-   if(heroState == 3){
-  console.log(heroState);
+    if(heroState == 1){logkey(e);}
+    if(heroState == 3){
     }
   }
 
@@ -56,6 +56,7 @@ var heroState = 1;
 
  document.addEventListener("keyup", actkey);
   function interactKey(e){
+      if (!invbool == true){
     if(e.key == "End" || e.key == "1"){
       interactStarter(interact("1"));
      drawMap();
@@ -89,6 +90,7 @@ var heroState = 1;
      drawMap();
     }
   }
+}
 
 document.addEventListener("keyup", actkey);
   function logkey(e){
@@ -165,11 +167,19 @@ document.addEventListener("keyup", actkey);
    var text = list(stuff);
      if(stuff !== undefined){
       document.getElementById("inventory").innerHTML = "loot bag <br>" + text;
+      invbool = true;
     }else{
       document.getElementById("inventory").innerHTML = "inventory is empty";
     }
   }
 
+function interactend(coordinates, number){
+  var num = 0;
+  for (var i = 0; i < dungeon.map.cell[coordinates.y][coordinates.x].list.length; i++) {
+  num = i;
+  }
+  return dungeon.map.cell.name;
+}
   var dungeon = new Dungeon;
   dungeon.initalizeDungeon(mapPackage);
   ctx.innerHTML = dungeon.displayDungeon();
