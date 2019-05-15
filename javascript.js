@@ -32,18 +32,17 @@ var invCords = undefined;
   // 3 is to attack
   function actkey(e){
     if (!intVar){
-    if(e.key == 5){heroState ++;}
-    if(heroState > 3){heroState = 1;}
-    if(heroState == 2){interactKey(e);}
-    if(heroState == 1){logkey(e);}
-    if(heroState == 3){
-  console.log(heroState);
-        }
+      if(e.key == 5){heroState ++;}
+        if(heroState > 3){heroState = 1;}
+        if(heroState == 2){interactKey(e);}
+        if(heroState == 1){logkey(e);}
+        if(heroState == 3){console.log("combat");}
       }
       if(intVar){
       var item = inventoryControl(e);
       if (item !== undefined) {
      dungeon.hero.take(item);
+     drawMap();
      }
     }
    }
@@ -171,16 +170,19 @@ document.addEventListener("keyup", actkey);
     coordinates = Utils.typeCheck(coordinates, "obj","interactStarter");
    var stuff = dungeon.map.cell[coordinates.y][coordinates.x].list;
    var text = list(stuff);
-     if(stuff !== undefined){
+     if(stuff.length > 0){
       document.getElementById("inventory").innerHTML = "Loot Bag <br>" + text;
+      intVar = true;
+      invCords = coordinates;
     }else{
       document.getElementById("inventory").innerHTML = "Inventory is empty";
     }
   }
 
-   function interactEnd(coordinates, number){
-    var cell = dungeon.map.cell[coordinates.y][coordinates.x];
+   function interactEnd(cell, number){
+    console.log(cell);
   var replace = cell.list[number];
+  console.log(replace);
   return cell.remove(replace);
   }
 /*J. make a new function called inventoryControl(key) that does the following:
@@ -191,19 +193,20 @@ uses a list from list() to find out what numbers there are in a cell (like 1:
   should return false for 0 or the item from interactEnd().*/
   function inventoryControl(key){
     var whitelist = [];
-    var cell = dungeon.map.cell[invCords.y][invCords.x].list;
+    var cell = dungeon.map.cell[invCords.y][invCords.x];
     var list = cell.list;
-      for (var i = 1; i <= list; i++) {whitelist.push([i]);}
-      if (key.key == 0) {
+    var keyUp = parseInt(key.key);
+      for (var i = 1; i <= list.length; i++) {whitelist.push(i);}
+      if (keyUp == 0) {
         intVar = false;
         invCords = undefined;
       }
-      if (whitelist.includes(key.key)) {
+      if (whitelist.includes(keyUp)) {
         intVar = false;
         invCords = undefined;
-        return interactEnd(cell, key.key);
+        return interactEnd(cell, keyUp);
       }
-      }
+    }
   var dungeon = new Dungeon;
   dungeon.initalizeDungeon(mapPackage);
   ctx.innerHTML = dungeon.displayDungeon();
