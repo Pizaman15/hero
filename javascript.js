@@ -31,7 +31,6 @@ var invCords = undefined;
   // 2 is to interact
   // 3 is to attack
   function actkey(e){
-    var item = undefined;
     if (!intVar){
     if(e.key == 5){heroState ++;}
     if(heroState > 3){heroState = 1;}
@@ -42,7 +41,10 @@ var invCords = undefined;
         }
       }
       if(intVar){
-
+      var item = inventoryControl(e);
+      if (item !== undefined) {
+     dungeon.hero.take(item);
+     }
     }
    }
 
