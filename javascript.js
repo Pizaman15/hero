@@ -24,27 +24,28 @@ var heroPackage = {image: "@",
                    damage: {min:2, max:5}}
 
 var heroState = 1;
-var interact = false;
+var intvar = false;
 var invCords = undefined;
 
   // 1 is to move
   // 2 is to interact
   // 3 is to attack
   function actkey(e){
-    if(interact){
-    if (!interact) {
+    if (!intvar) {
     if(e.key == 5){heroState ++;}
     if(heroState > 3){heroState = 1;}
-    if(heroState == 2){interactKey(e);}
-    if(heroState == 1){logkey(e);}
-    if(heroState == 3){          }
-    if (interact){}
+    if(heroState == 2){interactKey(e);console.log("2");}
+    if(heroState == 1){logkey(e);console.log("1");}
     if(heroState == 3){
+      console.log("3");
   console.log(heroState);
         }
       }
+      if (intvar){
+        var item = inventoryControl(e);
+     if(item !== undefined){dungeon.hero.take(item);}
+      }
     }
-  }
 
   function keys(key){
    var cord = dungeon._keyToMove(key);
@@ -62,7 +63,6 @@ var invCords = undefined;
 
  document.addEventListener("keyup", actkey);
   function interactKey(e){
-      if (!invbool == true){
     if(e.key == "End" || e.key == "1"){
       interactStarter(interact("1"));
      drawMap();
@@ -94,9 +94,8 @@ var invCords = undefined;
     if(e.key == "PageUp" || e.key == "9"){
       interactStarter(interact("9"));
      drawMap();
-      }
+    }
   }
-}
 
 document.addEventListener("keyup", actkey);
   function logkey(e){
@@ -148,7 +147,7 @@ document.addEventListener("keyup", actkey);
       }else{updates.innerHTML = dungeon.hero.name + " hit a wall";}
         drawMap();
       }
-  }
+    }
 
   //List creates a list 1-9 for inventory
   //0 is a cancel for it and will be in a
@@ -171,38 +170,19 @@ document.addEventListener("keyup", actkey);
     coordinates = Utils.typeCheck(coordinates, "obj","interactStarter");
    var stuff = dungeon.map.cell[coordinates.y][coordinates.x].list;
    var text = list(stuff);
+    invCords = dungeon.map.cell[coordinates.y][coordinates.x];
      if(stuff !== undefined){
       document.getElementById("inventory").innerHTML = "loot bag <br>" + text;
-      invbool = true;
+      intvar = true;
     }else{
       document.getElementById("inventory").innerHTML = "Inventory is empty";
     }
   }
 
-
-  function interactend(coordinates, number){
-    var cell = dungeon.map.cell[coordinates.y][coordinates.x];
-    var replace = cell.list[number];
-
-    return cell.remove(replace);
-  }
-
-
-function inventoryControl(key){
-  var whitelist = [];
-  var cell = dungeon.map.cell[invCords.y][invCords.x];
-  var list = cell.list;
-    for (var i = 1; i <= list.length ; i++) {whitelist.push([i]);}
-      if(key.key == 0){
-        interact = false;
-      }
-      if(whitelist.includes(key.key)){
-        return interactend(cell, key.key);
-  }
-}
    function interactEnd(coordinates, number){
-    var cell = dungeon.map.cell[coordinates.y][coordinates.x];
+  var cell = dungeon.map.cell[coordinates.y][coordinates.x];
   var replace = cell.list[number];
+
   return cell.remove(replace);
   }
 /*J. make a new function called inventoryControl(key) that does the following:
@@ -216,13 +196,16 @@ uses a list from list() to find out what numbers there are in a cell (like 1:
     var cell = dungeon.map.cell[invCords.y][invCords.x].list;
     var list = cell.list;
       for (var i = 1; i <= list; i++) {whitelist.push([i]);}
-      if (key.key == 0) {
-        interact = false;
-      }
-      if (whitelist.includes(key.key)) {
+        if (key.key == 0) {
+        intvar = false;
+        invcords = undefined;
+          }
+        if (whitelist.includes(key.key)) {
+        intvar = false;
+        invcords = undefined;
         return interactEnd(cell, key.key);
       }
-      }
+    }
   var dungeon = new Dungeon;
   dungeon.initalizeDungeon(mapPackage);
   ctx.innerHTML = dungeon.displayDungeon();
