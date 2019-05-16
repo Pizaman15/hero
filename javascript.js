@@ -43,6 +43,7 @@ var invCords = undefined;
       if (item !== undefined) {
      dungeon.hero.take(item);
      drawMap();
+     console.log(dungeon.hero.inventory);
      }
     }
    }
@@ -180,9 +181,7 @@ document.addEventListener("keyup", actkey);
   }
 
    function interactEnd(cell, number){
-    console.log(cell);
   var replace = cell.list[number];
-  console.log(replace);
   return cell.remove(replace);
   }
 /*J. make a new function called inventoryControl(key) that does the following:
