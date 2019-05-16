@@ -12,6 +12,7 @@ class Cell{
     this._border = this._isBorder(type);
     this._room = this._isRoom(type);
     this._inventory = [];
+    this._occupied = false;
   }
   add(item){
   this._inventory.push(item);
@@ -47,22 +48,30 @@ class Cell{
     this._room = this._isRoom(type);
   }
 
-  get network(){ return this._network; }
+  get network(){ return this._network;}
   set network(bool){ this._network = Utils.typeCheck(bool, "bool", "Cell.network"); }
 
   get open(){
+  if(this.occupied == true){return false;}
   if(this.type == "room" || this.type == "hall"){return true;}
   return false;
-
 }
-get list(){
-  var list = {length: this.inventory.length};
-    for (var i = 0; i < this.inventory.length; i++) {
-      list[i + 1] = this.inventory[i].name;
+  get list(){
+    var list = {length: this.inventory.length};
+      for (var i = 0; i < this.inventory.length; i++) {
+        list[i + 1] = this.inventory[i].name;
+        }
+        return list;
       }
-      return list;
-    }
 
+    get occupied(){
+      for (var i = 0; i < this.inventory.length; i++) {
+        if(this.inventory[i].type == "monster"){
+          return true;
+        }
+      }
+      return false;
+  }
 
   toString(){
   if(this.inventory.length == 0){return this.name;}

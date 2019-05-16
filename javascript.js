@@ -95,7 +95,7 @@ var invCords = undefined;
     if(e.key == "PageUp" || e.key == "9"){
       interactStarter(interact("9"));
      drawMap();
-      }
+    }
   }
 
 document.addEventListener("keyup", actkey);
@@ -148,7 +148,7 @@ document.addEventListener("keyup", actkey);
       }else{updates.innerHTML = dungeon.hero.name + " hit a wall";}
         drawMap();
       }
-  }
+    }
 
   //List creates a list 1-9 for inventory
   //0 is a cancel for it and will be in a
@@ -168,7 +168,7 @@ document.addEventListener("keyup", actkey);
   //Makes the inventory when collecting things
   //using function list 1-9 and 0 being cancel
   function interactStarter(coordinates){
-    coordinates = Utils.typeCheck(coordinates, "obj","interactStarter");
+  coordinates = Utils.typeCheck(coordinates, "obj","interactStarter");
    var stuff = dungeon.map.cell[coordinates.y][coordinates.x].list;
    var text = list(stuff);
      if(stuff.length > 0){
