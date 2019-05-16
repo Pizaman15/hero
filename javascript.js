@@ -24,29 +24,28 @@ var heroPackage = {image: "@",
                    damage: {min:2, max:5}}
 
 var heroState = 1;
-var intvar = false;
+var intVar = false;
 var invCords = undefined;
 
   // 1 is to move
   // 2 is to interact
   // 3 is to attack
   function actkey(e){
-    if (!intvar) {
+    if (!intVar){
       if(e.key == 5){heroState ++;}
-      if(heroState > 3){heroState = 1;}
-      if(heroState == 2){interactKey(e);}
-      if(heroState == 1){logkey(e);}
-      if(heroState == 3){
-        }
+        if(heroState > 3){heroState = 1;}
+        if(heroState == 2){interactKey(e);}
+        if(heroState == 1){logkey(e);}
+        if(heroState == 3){console.log("combat");}
       }
-      if (intvar){
-        var item = inventoryControl(e);
-        if(item !== undefined){
-        dungeon.hero.take(item);
-        drawMap();
-        }
-      }
+      if(intVar){
+      var item = inventoryControl(e);
+      if (item !== undefined) {
+     dungeon.hero.take(item);
+     drawMap();
+     }
     }
+   }
 
   function keys(key){
    var cord = dungeon._keyToMove(key);
@@ -172,17 +171,18 @@ document.addEventListener("keyup", actkey);
    var stuff = dungeon.map.cell[coordinates.y][coordinates.x].list;
    var text = list(stuff);
      if(stuff.length > 0){
-      document.getElementById("inventory").innerHTML = "loot bag <br>" + text;
-      intvar = true;
-      invcords = coordinates;
+      document.getElementById("inventory").innerHTML = "Loot Bag <br>" + text;
+      intVar = true;
+      invCords = coordinates;
     }else{
       document.getElementById("inventory").innerHTML = "Inventory is empty";
     }
   }
 
    function interactEnd(cell, number){
+    console.log(cell);
   var replace = cell.list[number];
-
+  console.log(replace);
   return cell.remove(replace);
   }
 /*J. make a new function called inventoryControl(key) that does the following:
@@ -195,15 +195,16 @@ uses a list from list() to find out what numbers there are in a cell (like 1:
     var whitelist = [];
     var cell = dungeon.map.cell[invCords.y][invCords.x];
     var list = cell.list;
+    var keyUp = parseInt(key.key);
       for (var i = 1; i <= list.length; i++) {whitelist.push(i);}
-        if (key.key == 0) {
-        intvar = false;
-        invcords = undefined;
+      if (keyUp == 0) {
+        intVar = false;
+        invCords = undefined;
       }
-        if (whitelist.includes(key.key)) {
-        intvar = false;
-        invcords = undefined;
-        return interactEnd(cell, key.key);
+      if (whitelist.includes(keyUp)) {
+        intVar = false;
+        invCords = undefined;
+        return interactEnd(cell, keyUp);
       }
     }
   var dungeon = new Dungeon;
