@@ -32,18 +32,19 @@ var invCords = undefined;
   // 3 is to attack
   function actkey(e){
     if (!intvar) {
-    if(e.key == 5){heroState ++;}
-    if(heroState > 3){heroState = 1;}
-    if(heroState == 2){interactKey(e);console.log("2");}
-    if(heroState == 1){logkey(e);console.log("1");}
-    if(heroState == 3){
-      console.log("3");
-  console.log(heroState);
+      if(e.key == 5){heroState ++;}
+      if(heroState > 3){heroState = 1;}
+      if(heroState == 2){interactKey(e);}
+      if(heroState == 1){logkey(e);}
+      if(heroState == 3){
         }
       }
       if (intvar){
         var item = inventoryControl(e);
-     if(item !== undefined){dungeon.hero.take(item);}
+        if(item !== undefined){
+        dungeon.hero.take(item);
+        drawMap();
+        }
       }
     }
 
@@ -170,17 +171,16 @@ document.addEventListener("keyup", actkey);
     coordinates = Utils.typeCheck(coordinates, "obj","interactStarter");
    var stuff = dungeon.map.cell[coordinates.y][coordinates.x].list;
    var text = list(stuff);
-    invCords = dungeon.map.cell[coordinates.y][coordinates.x];
-     if(stuff !== undefined){
+     if(stuff.length > 0){
       document.getElementById("inventory").innerHTML = "loot bag <br>" + text;
       intvar = true;
+      invcords = coordinates;
     }else{
       document.getElementById("inventory").innerHTML = "Inventory is empty";
     }
   }
 
-   function interactEnd(coordinates, number){
-  var cell = dungeon.map.cell[coordinates.y][coordinates.x];
+   function interactEnd(cell, number){
   var replace = cell.list[number];
 
   return cell.remove(replace);
@@ -193,13 +193,13 @@ uses a list from list() to find out what numbers there are in a cell (like 1:
   should return false for 0 or the item from interactEnd().*/
   function inventoryControl(key){
     var whitelist = [];
-    var cell = dungeon.map.cell[invCords.y][invCords.x].list;
+    var cell = dungeon.map.cell[invCords.y][invCords.x];
     var list = cell.list;
-      for (var i = 1; i <= list; i++) {whitelist.push([i]);}
+      for (var i = 1; i <= list.length; i++) {whitelist.push(i);}
         if (key.key == 0) {
         intvar = false;
         invcords = undefined;
-          }
+      }
         if (whitelist.includes(key.key)) {
         intvar = false;
         invcords = undefined;
