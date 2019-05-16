@@ -167,7 +167,7 @@ document.addEventListener("keyup", actkey);
   //Makes the inventory when collecting things
   //using function list 1-9 and 0 being cancel
   function interactStarter(coordinates){
-    coordinates = Utils.typeCheck(coordinates, "obj","interactStarter");
+  coordinates = Utils.typeCheck(coordinates, "obj","interactStarter");
    var stuff = dungeon.map.cell[coordinates.y][coordinates.x].list;
    var text = list(stuff);
      if(stuff.length > 0){
@@ -180,9 +180,7 @@ document.addEventListener("keyup", actkey);
   }
 
    function interactEnd(cell, number){
-    console.log(cell);
   var replace = cell.list[number];
-  console.log(replace);
   return cell.remove(replace);
   }
 /*J. make a new function called inventoryControl(key) that does the following:
