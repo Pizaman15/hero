@@ -46,4 +46,7 @@ this._inventory = [];
   get inventory(){ return Utils.undefinedCheck(this._inventory, "Hero.inventory");}// need to have the protection error
   set inventory(inventory){this._inventory = Utils.protectionError("Hero", "inventory");}
 
+  get attack(){this._attack = {min:this.damage.min, max:this.damage.max};
+    return this._attack;
+  }
 }
