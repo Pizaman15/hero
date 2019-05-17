@@ -41,21 +41,12 @@ var invCords = undefined;
         if(heroState == 3){combatKeys(e);console.log("3");}
       }
       if(intVar){
-<<<<<<< HEAD
       var item = inventoryControl(e);
       if (item !== undefined) {
      dungeon.hero.take(item);
      drawMap();
      console.log(dungeon.hero.inventory);
      }
-=======
-        var item = inventoryControl(e);
-        if (item !== undefined) {
-          dungeon.hero.take(item);
-          drawMap();
-        }
-      }
->>>>>>> 7744d2cfac15518798208e30785432053bcbe7df
     }
 
   function keys(key){
