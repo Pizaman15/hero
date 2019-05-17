@@ -36,19 +36,27 @@ var invCords = undefined;
     if (!intVar){
       if(e.key == 5){heroState ++;}
         if(heroState > 3){heroState = 1;}
-        if(heroState == 2){interactKey(e);}
-        if(heroState == 1){logkey(e);}
-        if(heroState == 3){console.log("combat");}
+        if(heroState == 2){interactKey(e);console.log("2");}
+        if(heroState == 1){logkey(e);console.log("1");}
+        if(heroState == 3){combatKeys(e);console.log("3");}
       }
       if(intVar){
+<<<<<<< HEAD
       var item = inventoryControl(e);
       if (item !== undefined) {
      dungeon.hero.take(item);
      drawMap();
      console.log(dungeon.hero.inventory);
      }
+=======
+        var item = inventoryControl(e);
+        if (item !== undefined) {
+          dungeon.hero.take(item);
+          drawMap();
+        }
+      }
+>>>>>>> 7744d2cfac15518798208e30785432053bcbe7df
     }
-   }
 
   function keys(key){
    var cord = dungeon._keyToMove(key);
@@ -63,6 +71,99 @@ var invCords = undefined;
     var cord = dungeon._keyToMove(key);
      return cord;
    }
+
+  function combatKeys(e){
+    var occupied = dungeon.map.cell.occupied;
+    var invlength = dungeon.map.cell.length;
+    if(e.key == "End" || e.key == "1"){
+      if(keys("1")) {
+        if (occupied == true) {
+          dungeon.map.cell[dungeon._keyToMove(key).y][dungeon._keyToMove(key).x].assignDamage(damage);
+          inventory.inneraHTML = dungeon.hero.name + "hits for " + damage + "."
+        }
+        if (occupied == false) {
+          inventory.innerHTML = dungeon.hero.name + "attacks the darkness "  + ".";
+        }
+      }
+    }
+    if(e.key == "ArrowDown" || e.key == "2"){
+      if(keys("2")){
+        if (occupied == true) {
+          dungeon.map.cell[dungeon._keyToMove(key).y][dungeon._keyToMove(key).x].assignDamage(damage);
+          inventory.inneraHTML = dungeon.hero.name + "hits for " + damage + "."
+        }
+        if (occupied == false) {
+          inventory.innerHTML = dungeon.hero.name + "attacks the darkness "  + ".";
+        }
+      }
+    }
+    if(e.key == "PageDown" || e.key == "3"){
+      if(keys("3")){
+        if (occupied == true) {
+          dungeon.map.cell[dungeon._keyToMove(key).y][dungeon._keyToMove(key).x].assignDamage(damage);
+          inventory.inneraHTML = dungeon.hero.name + "hits for " + damage + "."
+        }
+        if (occupied == false) {
+          inventory.innerHTML = dungeon.hero.name + "attacks the darkness "  + ".";
+        }
+      }
+    }
+    if(e.key == "ArrowLeft" || e.key == "4"){
+      if(keys("4")){
+        if (occupied == true) {
+          dungeon.map.cell[dungeon._keyToMove(key).y][dungeon._keyToMove(key).x].assignDamage(damage);
+          inventory.inneraHTML = dungeon.hero.name + "hits for " + damage + "."
+        }
+        if (occupied == false) {
+          inventory.innerHTML = dungeon.hero.name + "attacks the darkness "  + ".";
+        }
+      }
+    }
+    if(e.key == "ArrowRight" || e.key == "6"){
+      if(keys("6")){
+        if (occupied == true) {
+          dungeon.map.cell[dungeon._keyToMove(key).y][dungeon._keyToMove(key).x].assignDamage(damage);
+          inventory.inneraHTML = dungeon.hero.name + "hits for " + damage + "."
+        }
+        if (occupied == false) {
+          inventory.innerHTML = dungeon.hero.name + "attacks the darkness "  + ".";
+        }
+      }
+    }
+    if(e.key == "Home" || e.key == "7"){
+      if(keys("7")){
+        if (occupied == true) {
+          dungeon.map.cell[dungeon._keyToMove(key).y][dungeon_.keyToMove(key).x].assignDamage(damage);
+          inventory.inneraHTML = dungeon.hero.name + "hits for " + damage + "."
+        }
+        if (occupied == false) {
+          inventory.innerHTML = dungeon.hero.name + "attacks the darkness "  + ".";
+        }
+      }
+    }
+    if(e.key == "ArrowUp" || e.key == "8"){
+      if(keys("8")){
+        if (occupied == true) {
+          dungeon.map.cell[dungeon._keyToMove(key).y][dungeon._keyToMove(key).x].assignDamage(damage);
+          inventory.inneraHTML = dungeon.hero.name + "hits for " + damage + "."
+        }
+        if (occupied == false) {
+          inventory.innerHTML = dungeon.hero.name + "attacks the darkness "  + ".";
+        }
+      }
+    }
+    if(e.key == "PageUp" || e.key == "9"){
+      if(keys("9")){
+        if (occupied == true) {
+          dungeon.map.cell[dungeon._keyToMove(key).y][dungeon._keyToMove(key).x].assignDamage(damage);
+          inventory.inneraHTML = dungeon.hero.name + "hits for " + damage + "."
+        }
+        if (occupied == false) {
+          inventory.innerHTML = dungeon.hero.name + "attacks the darkness "  + ".";
+        }
+      }
+    }
+  }
 
  document.addEventListener("keyup", actkey);
   function interactKey(e){

@@ -1,7 +1,7 @@
 //damage={min,max}
 class Monster extends Item{
   constructor(image, name, health, damage, behavior){
-    super(image, name, type, 100)
+    super(image, name, "monster", 100)
     this._health = Utils.typeCheck(health, "int", "Monster constructor (health)");
     this._damage = Utils.typeCheck(damage, "obj", "Monster constructor (damage)");
     this._behavior = Utils.typeCheck(behavior, "str", "Monster constructor (behavior)");
@@ -19,7 +19,13 @@ class Monster extends Item{
   set behavior(behavior){
     this._behavior = Utils.typeCheck(behavior, "str", "item.monster.behavior");
   }
+<<<<<<< HEAD
   get attack(){return this._damage = {
     min:this.damage.min,
     max:this.damage.max}}
+=======
+  get attack(){this._attack = {min:this.damage.min, max:this.damage.max};
+    return this._attack
+  }
+>>>>>>> 7744d2cfac15518798208e30785432053bcbe7df
 }
