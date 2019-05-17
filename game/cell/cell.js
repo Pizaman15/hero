@@ -73,6 +73,15 @@ class Cell{
       return false;
   }
 
+  assignDamage(damage){
+    Utils.typeCheck(damage, "int", "dungeon.cell.assignDamage");
+    for (var i = 0; i < this.inventory.length; i++){
+      if(this.inventory[i].type == "monster"){
+        this.inventory[i].health - damage;
+      }
+    }
+  }
+
   toString(){
   if(this.inventory.length == 0){return this.name;}
   var itemIndex = 0;
