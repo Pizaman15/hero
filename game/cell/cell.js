@@ -30,7 +30,6 @@ class Cell{
   this._inventory = [];
   }
 
-
   _isBorder(type){ return type.toLowerCase() === "border"; }
 
   _isRoom(type){ return this._roomList.indexOf(type.toLowerCase()) > -1; }

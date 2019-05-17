@@ -1,7 +1,7 @@
 var ctx = document.getElementById('map');
 ctx.innerHTML = "Context defined";
 
-/* Inital conditions and starting map generation.  */
+/* Inital conditions and starting map generation.*/
 var mapPackage = {name: "The Ultimate Map",
                   size: {width: 75, height: 50},
                   tile: Cell,
@@ -27,9 +27,11 @@ var heroState = 1;
 var intVar = false;
 var invCords = undefined;
 
-  // 1 is to move
-  // 2 is to interact
-  // 3 is to attack
+  /*
+  1 is to move
+  2 is to interact
+  3 is to attack
+*/
   function actkey(e){
     if (!intVar){
       if(e.key == 5){heroState ++;}
@@ -57,7 +59,7 @@ var invCords = undefined;
     return false;
    }
 
-   function interact(key){
+  function interact(key){
     var cord = dungeon._keyToMove(key);
      return cord;
    }
@@ -150,9 +152,11 @@ document.addEventListener("keyup", actkey);
       }
     }
 
-  //List creates a list 1-9 for inventory
-  //0 is a cancel for it and will be in a
-  //list format 1-9 + 0 being cancel
+  /*
+  List creates a list 1-9 for inventory
+  0 is a cancel for it and will be in a
+  list format 1-9 + 0 being cancel
+*/
   function list(inventory){
     var num = 9;
     var inv = "Inventory <BR><BR>";
@@ -165,8 +169,9 @@ document.addEventListener("keyup", actkey);
    return inv += "0. Cancel";
   }
 
-  //Makes the inventory when collecting things
-  //using function list 1-9 and 0 being cancel
+  /*Makes the inventory when collecting things
+  using function list 1-9 and 0 being cancel
+*/
   function interactStarter(coordinates){
   coordinates = Utils.typeCheck(coordinates, "obj","interactStarter");
    var stuff = dungeon.map.cell[coordinates.y][coordinates.x].list;
@@ -180,10 +185,11 @@ document.addEventListener("keyup", actkey);
     }
   }
 
-   function interactEnd(cell, number){
+  function interactEnd(cell, number){
   var replace = cell.list[number];
   return cell.remove(replace);
   }
+
 /*J. make a new function called inventoryControl(key) that does the following:
 uses a list from list() to find out what numbers there are in a cell (like 1:
 'sword' 2: 'axe' 3: 'Aidan's lack of self respect' means keys 1-3 would do their
@@ -213,7 +219,7 @@ uses a list from list() to find out what numbers there are in a cell (like 1:
 
   /* drawMap()
   return: none. Simply an event handler to redraw the current map display.
-  */
+*/
   function drawMap(){
     ctx.innerHTML = dungeon.displayDungeon();
 
@@ -223,7 +229,7 @@ uses a list from list() to find out what numbers there are in a cell (like 1:
   /* newMap(conditions)
   @param conditions: {object} a mapPackage object.
   @return: none.
-  */
+*/
   function newMap(conditions){
     dungeon.initalizeDungeon(conditions);
     dungeon._initHero(heroPackage);

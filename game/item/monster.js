@@ -19,5 +19,7 @@ class Monster extends Item{
   set behavior(behavior){
     this._behavior = Utils.typeCheck(behavior, "str", "item.monster.behavior");
   }
-  get attack(){return this._damage = {min:this.damage.min, max:this.damage.max};}
+  get attack(){return this._damage = {
+    min:this.damage.min,
+    max:this.damage.max}}
 }

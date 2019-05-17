@@ -98,6 +98,7 @@ class Dungeon {
 _checkMove(coordinates){
   return this.map.cell[coordinates.y][coordinates.x].open;
 }
+
   displayDungeon(){
     var map = this.map; // to allow for the getter to do the undefined check
     var output = "";
@@ -136,12 +137,12 @@ catch(e){var heroloc = {x:null,y:null}}
     this.map.makeMap(mapPackage.room, mapPackage.roomDensity, mapPackage.hallDensity);
   }
 
-    //will use the list of items that are in the hero's inventoryto be used
-  //by the hero so we need to make it check what is in the inventory and
-  //the order at witch they are and push them into an array and gets the
-  //cells buy name and returns it so we will most likely need for statements
-  //and if statements to check the inventory if it is empty dont check if it
-  //isnt then check the items and there order and names...?
+    /*will use the list of items that are in the hero's inventoryto be used
+    by the hero so we need to make it check what is in the inventory and
+    the order at witch they are and push them into an array and gets the
+    cells buy name and returns it so we will most likely need for statements
+    and if statements to check the inventory if it is empty dont check if it
+    isnt then check the items and there order and names...?*/
 
   get name(){ return Utils.undefinedCheck(this._name, "Dungeon.name"); }
   set name(name){ this._name = Utils.typeCheck(name, "str", "Dungeon.name"); }

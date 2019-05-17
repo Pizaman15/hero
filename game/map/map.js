@@ -34,7 +34,6 @@ class Map{
     return retVal;
   }
 
-
   /* _initMap(size, fill)
   @param size: {object} a width and height keyed object
   @param fill: {string} a string or string literal that will be the base cell
@@ -87,9 +86,9 @@ class Map{
     max.height -= min.height; // 0 base, subtract down to 0
 
     var size = Utils.cords(max.width, max.height, limits.room); // get numbers
-    size = Utils.dimensions(size); // fix keys
-    size.width += min.width; // add the min back in to get the right range
-    size.height += min.height;
+        size = Utils.dimensions(size); // fix keys
+        size.width += min.width; // add the min back in to get the right range
+        size.height += min.height;
 
     var location = {xMax: this.width - size.width, yMax: this.height - size.height};
     var location = Utils.cords(location.xMax, location.yMax, limits.placement);

@@ -23,6 +23,7 @@ drop(item){
 _purge(){
 this._inventory = [];
 }
+
   get image(){ return this._image}
   set image(image){this._image = Utils.typeCheck(image, "str", "Hero.image");}
 
