@@ -48,6 +48,7 @@ var invCords = undefined;
      console.log(dungeon.hero.inventory);
      }
     }
+  }
 
   function keys(key){
    var cord = dungeon._keyToMove(key);
@@ -330,7 +331,6 @@ uses a list from list() to find out what numbers there are in a cell (like 1:
   }
   document.getElementById("newbtn").onclick = function(){ newMap(mapPackage);}
   document.getElementById("blkmap").onclick = function(){ newMap(blankPackage);}
-  document.getElementById("updates").onclick = function(){}
 
 /*
 function addRoom(size, map){
